@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCApp", "SampleMVCAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleMVCApp.Tests", "SampleMVCApp.Tests\SampleMVCApp.Tests.csproj", "{3D45B758-96A0-4A97-961C-45EE1C303209}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleConsoleApp", "SampleConsoleApp\SampleConsoleApp.csproj", "{C42A9D6A-C0A3-4B0D-9716-B9C6FDC55E76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,15 @@ Global
 		{3D45B758-96A0-4A97-961C-45EE1C303209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D45B758-96A0-4A97-961C-45EE1C303209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D45B758-96A0-4A97-961C-45EE1C303209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C42A9D6A-C0A3-4B0D-9716-B9C6FDC55E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C42A9D6A-C0A3-4B0D-9716-B9C6FDC55E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C42A9D6A-C0A3-4B0D-9716-B9C6FDC55E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C42A9D6A-C0A3-4B0D-9716-B9C6FDC55E76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {657D82A7-D97C-4653-ABED-39A5DC292F21}
 	EndGlobalSection
 EndGlobal
