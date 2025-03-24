@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace SampleMVCApp.Controllers
 {
@@ -105,8 +106,9 @@ namespace SampleMVCApp.Controllers
                 var response = client.GetAsync("https://jsonplaceholder.typicode.com/posts").Result;
                 if (response.IsSuccessStatusCode)
                 {
-                    var data = response.Content.ReadAsStringAsync().Result;
-                    ViewBag.ApiData = data;
+                    var json = response.Content.ReadAsStringAsync().Result;
+                    var posts = JsonConvert.DeserializeObject<List<ExternalPost>>(json);
+                    return View(posts);
                 }
             }
             return View();

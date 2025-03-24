@@ -41,3 +41,20 @@ Console.WriteLine("Numeri Ordinati: " + string.Join(", ", numbers));
 // Punto di partenza per esercitazioni con Copilot:
 // 1. Prova a modificare il metodo BubbleSort per renderlo più efficiente.
 // 2. Aggiungi nuovi metodi per la ricerca (es. ricerca binaria) e verifica i suggerimenti.
+
+// Esempio di utilizzo di un metodo di estensione
+string message = "Hello, World!";
+string reversed = message.Reverse().Aggregate("", (acc, c) => acc + c);
+Console.WriteLine("Messaggio Invertito: " + reversed);
+
+// Lista di 10 numeri casuali
+Random random = new Random();
+List<int> randomNumbers = Enumerable.Range(0, 10).Select(_ => random.Next(1, 101)).ToList();
+
+// Esempi per i metodi Derivative e Integral della classe SampleUtility
+int x = 3;
+string derivativeResult = SampleUtility.Derivative(x);
+string integralResult = SampleUtility.Integral(x);
+
+Console.WriteLine(derivativeResult);
+Console.WriteLine(integralResult);

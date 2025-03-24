@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SampleMVCApp.Models.ExternalPost>
+
+@{
+    ViewBag.Title = "FetchExternalData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Post esterni</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Titolo</th>
+            <th>Corpo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.id</td>
+                <td>@post.userId</td>
+                <td>@post.title</td>
+                <td>@post.body</td>
+            </tr>
+        }
+    </tbody>
+</table>
