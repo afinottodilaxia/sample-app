@@ -9,12 +9,32 @@ namespace SampleConsoleApp
 
         public static int Add(int a, int b)
         {
-            return a + b;
+            int result = a + b;
+            return result;
         }
 
         public static int Multiply(int a, int b)
         {
-            return a * b;
+            int result = a * b;
+            return result;
+        }
+
+        public static int Subtract(int a, int b)
+        {
+            int result = a - b;
+            return result;
+        }
+
+        public static int Divide(int a, int b)
+        {
+            int result = a / b;
+            return result;
+        }
+
+        public static int Modulus(int a, int b)
+        {
+            int result = a % b;
+            return result;
         }
 
         /// <summary>
