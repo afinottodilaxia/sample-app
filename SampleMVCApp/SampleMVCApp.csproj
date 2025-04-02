@@ -185,6 +185,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-SampleMVCApp-20250319053814.mdf" />
+    <Content Include="App_Data\aspnet-SampleMVCApp-20250319053814_log.ldf">
+      <DependentUpon>aspnet-SampleMVCApp-20250319053814.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -257,9 +261,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Product\FetchExternalData.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
     <Content Include="Content\bootstrap.rtl.css.map" />
