@@ -1,37 +1,37 @@
 namespace SampleConsoleApp
 {
-    public static class SampleUtility
+    public static class AnotherUtility
     {
-        public static void PrintMessage(string message)
+        public static void DisplayMessage(string message)
         {
-            Console.WriteLine(message);
+            Console.WriteLine("Message: " + message);
         }
 
-        public static int Add(int a, int b)
+        public static int Sum(int a, int b)
         {
             int result = a + b;
             return result;
         }
 
-        public static int Multiply(int a, int b)
+        public static int Product(int a, int b)
         {
             int result = a * b;
             return result;
         }
 
-        public static int Subtract(int a, int b)
+        public static int Difference(int a, int b)
         {
             int result = a - b;
             return result;
         }
 
-        public static int Divide(int a, int b)
+        public static int Quotient(int a, int b)
         {
             int result = a / b;
             return result;
         }
 
-        public static int Modulus(int a, int b)
+        public static int Remainder(int a, int b)
         {
             int result = a % b;
             return result;
