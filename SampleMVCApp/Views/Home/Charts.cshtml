@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "Charts";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Visitor Statistics</h3>
+                </div>
+                <div class="card-body">
+                    <p>This chart shows the number of users visiting our website over the last 6 months.</p>
+                    <div aria-label="Line chart showing the trend of website visitors over the last 6 months, with highest traffic in June">
+                        <canvas id="visitorChart" style="width: 100%; height: auto;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Server Traffic</h3>
+                </div>
+                <div class="card-body">
+                    <p>This chart displays the incoming and outgoing server traffic in MB over the last week.</p>
+                    <div aria-label="Bar chart comparing incoming and outgoing server traffic in megabytes for each day of the week">
+                        <canvas id="trafficChart" style="width: 100%; height: auto;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Website Topics Distribution</h3>
+                </div>
+                <div class="card-body">
+                    <p>This chart represents the distribution of topics across our website content.</p>
+                    <div aria-label="Pie chart showing the distribution of content topics on the website, with Technology being the largest segment">
+                        <canvas id="topicsChart" style="width: 100%; height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script>
+        // Visitor Statistics - Line Chart
+        var visitorCtx = document.getElementById('visitorChart').getContext('2d');
+        var visitorChart = new Chart(visitorCtx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'Visitors',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    data: [
+                        Math.floor(Math.random() * 5000) + 3000,
+                        Math.floor(Math.random() * 5000) + 3000,
+                        Math.floor(Math.random() * 5000) + 3000,
+                        Math.floor(Math.random() * 5000) + 3000,
+                        Math.floor(Math.random() * 5000) + 3000,
+                        Math.floor(Math.random() * 5000) + 3000
+                    ],
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Website Visitors'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                    }
+                }
+            }
+        });
+
+        // Server Traffic - Bar Chart
+        var trafficCtx = document.getElementById('trafficChart').getContext('2d');
+        var trafficChart = new Chart(trafficCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: [
+                    {
+                        label: 'Incoming Traffic (MB)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        data: [
+                            Math.floor(Math.random() * 500) + 200,
+                            Math.floor(Math.random() * 500) + 200,
+                            Math.floor(Math.random() * 500) + 200,
+                            Math.floor(Math.random() * 500) + 200,
+                            Math.floor(Math.random() * 500) + 200,
+                            Math.floor(Math.random() * 500) + 200,
+                            Math.floor(Math.random() * 500) + 200
+                        ]
+                    },
+                    {
+                        label: 'Outgoing Traffic (MB)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        data: [
+                            Math.floor(Math.random() * 300) + 100,
+                            Math.floor(Math.random() * 300) + 100,
+                            Math.floor(Math.random() * 300) + 100,
+                            Math.floor(Math.random() * 300) + 100,
+                            Math.floor(Math.random() * 300) + 100,
+                            Math.floor(Math.random() * 300) + 100,
+                            Math.floor(Math.random() * 300) + 100
+                        ]
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Weekly Server Traffic'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                }
+            }
+        });
+
+        // Topics Distribution - Pie Chart
+        var topicsCtx = document.getElementById('topicsChart').getContext('2d');
+        var topicsChart = new Chart(topicsCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Technology', 'Business', 'Health', 'Entertainment', 'Science', 'Sports'],
+                datasets: [{
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    data: [
+                        Math.floor(Math.random() * 30) + 20,
+                        Math.floor(Math.random() * 20) + 10,
+                        Math.floor(Math.random() * 15) + 5,
+                        Math.floor(Math.random() * 15) + 5,
+                        Math.floor(Math.random() * 10) + 5,
+                        Math.floor(Math.random() * 10) + 5
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Website Content Topics'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                var label = context.label || '';
+                                var value = context.raw || 0;
+                                var total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                var percentage = Math.round((value / total) * 100);
+                                return label + ': ' + percentage + '%';
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    </script>
+}
