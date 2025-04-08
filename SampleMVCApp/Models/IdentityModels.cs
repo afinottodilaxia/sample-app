@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MySql.Data.EntityFramework;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Migrations;
 
 namespace SampleMVCApp.Models
 {
@@ -18,6 +20,7 @@ namespace SampleMVCApp.Models
         }
     }
 
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -28,6 +31,30 @@ namespace SampleMVCApp.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Customize the ASP.NET Identity model and override the defaults if needed.
+            // For example, you can rename the ASP.NET Identity table names and more.
+            // Add your customizations after calling base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
+        }
+
+        protected override void Seed(ApplicationDbContext context)
+        {
+            // This method will be called after migrating to the latest version.
+            // You can use the DbSet<T>.AddOrUpdate() helper extension method
+            // to avoid creating duplicate seed data.
         }
     }
 }

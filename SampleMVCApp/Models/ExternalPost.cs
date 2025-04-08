@@ -1,4 +1,3 @@
-
 // namespace
 namespace SampleMVCApp.Models
 {
