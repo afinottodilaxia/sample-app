@@ -1,0 +1,145 @@
+@model SampleMVCApp.Models.ListaDellaSpesaViewModel
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Lista della Spesa";
+}
+
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+
+    <!-- Bottone per aprire il popup -->
+    <button class="btn btn-primary mb-3" id="btnCreateProduct" data-bs-toggle="modal" data-bs-target="#createProductModal">
+        + Crea Prodotto
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome Prodotto</th>
+                    <th>Quantità</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Prodotti != null && Model.Prodotti.Any())
+                {
+                    foreach (var prodotto in Model.Prodotti)
+                    {
+                        <tr>
+                            <td>@prodotto.Id</td>
+                            <td>@prodotto.NomeProdotto</td>
+                            <td>@prodotto.Quantita</td>
+                            <td>@prodotto.Note</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Nessun prodotto trovato.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <button class="btn btn-outline-dark"
+                onclick="location.href='@Url.Action("ListaDellaSpesa", new { page = Model.Prodotti.PageNumber - 1 })'"
+                @(Model.Prodotti.HasPreviousPage ? "" : "disabled")>
+            &larr; Precedenti
+        </button>
+
+        <span class="mx-3">
+            @((Model.Prodotti.PageNumber - 1) * Model.Prodotti.PageSize + 1) | @Model.Prodotti.TotalItemCount
+        </span>
+
+        <button class="btn btn-outline-dark"
+                onclick="location.href='@Url.Action("ListaDellaSpesa", new { page = Model.Prodotti.PageNumber + 1 })'"
+                @(Model.Prodotti.HasNextPage ? "" : "disabled")>
+            Successivi &rarr;
+        </button>
+    </div>
+</main>
+
+<!-- Modal per creare un nuovo prodotto -->
+<div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProductModalLabel">Crea Nuovo Prodotto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("CreateProduct", "Product", FormMethod.Post, new { id = "createProductForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.NuovoProdotto.Id)
+
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.NuovoProdotto.NomeProdotto, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.NuovoProdotto.NomeProdotto, new { @class = "form-control", placeholder = "Inserisci il nome del prodotto" })
+                        @Html.ValidationMessageFor(m => m.NuovoProdotto.NomeProdotto, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.NuovoProdotto.Quantita, new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.NuovoProdotto.Quantita, new { @class = "form-control", placeholder = "Inserisci la quantità" })
+                        @Html.ValidationMessageFor(m => m.NuovoProdotto.Quantita, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.NuovoProdotto.Note, new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.NuovoProdotto.Note, new { @class = "form-control", rows = 3, placeholder = "Inserisci eventuali note" })
+                        @Html.ValidationMessageFor(m => m.NuovoProdotto.Note, "", new { @class = "text-danger" })
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                <button type="button" class="btn btn-primary" id="saveProductButton">Salva</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("saveProductButton").addEventListener("click", function () {
+            const form = $("#createProductForm");
+            // Log sulla console prima della validazione
+            console.log("Tentativo di invio del form. Dati attuali:", {
+                NomeProdotto: document.getElementById("createProductForm").elements["NuovoProdotto.NomeProdotto"].value,
+                Quantita: document.getElementById("createProductForm").elements["NuovoProdotto.Quantita"].value,
+                Note: document.getElementById("createProductForm").elements["NuovoProdotto.Note"].value
+            });
+
+            // Verifica la validità del form usando jQuery Validation
+            if (!form.valid()) {
+                return; // Previene l'invio se la validazione client-side fallisce
+            }
+
+            // Serializza i dati del form
+            const data = form.serialize();
+
+            // Chiamata AJAX per inviare i dati al server
+            $.ajax({
+                url: form.attr("action"), // URL specificato nell'attributo "action" del form
+                type: "POST", // Metodo HTTP
+                data: data, // Dati serializzati
+                success: function (response) {
+                    if (response.success) {
+                        alert("Prodotto creato con successo!");
+                        location.reload(); // Ricarica la pagina per aggiornare la lista
+                    } else {
+                        alert("Errore durante la creazione del prodotto:\n" + response.errors.join("\n"));
+                    }
+                },
+                error: function () {
+                    alert("Si è verificato un errore durante l'invio del modulo.");
+                }
+            });
+        });
+    </script>
+}
+

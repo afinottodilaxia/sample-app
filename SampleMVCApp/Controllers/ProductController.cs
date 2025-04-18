@@ -1,22 +1,24 @@
 ﻿using SampleMVCApp.Models;
-using System;
-using System.Collections.Generic;
+using SampleMVCApp.Services;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
 
 namespace SampleMVCApp.Controllers
 {
     public class ProductController : Controller
     {
-        private ProductRepository _repository = new ProductRepository();
+        private readonly ProductService _service;
+
+        public ProductController()
+        {
+            _service = new ProductService();
+        }
 
         // GET: Product
         public ActionResult Index()
         {
-            var products = _repository.GetAll();
+            var products = _service.GetAll();
             return View(products);
         }
 
@@ -26,7 +28,7 @@ namespace SampleMVCApp.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var product = _repository.GetById(id.Value);
+            var product = _service.GetById(id.Value);
             if (product == null)
                 return HttpNotFound();
 
@@ -39,14 +41,30 @@ namespace SampleMVCApp.Controllers
         // POST: Product/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        public ActionResult Create(Prodotto prodotto)
         {
             if (ModelState.IsValid)
             {
-                _repository.Add(product);
+                _service.Create(prodotto);
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(prodotto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult CreateProduct(Prodotto prodotto)
+        {
+            if (ModelState.IsValid)
+            {
+                _service.Create(prodotto);
+                return Json(new { success = true });
+            }
+
+            // Return validation errors
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                                           .Select(e => e.ErrorMessage)
+                                           .ToList();
+            return Json(new { success = false, errors });
         }
 
         // GET: Product/Edit/5
@@ -55,7 +73,7 @@ namespace SampleMVCApp.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var product = _repository.GetById(id.Value);
+            var product = _service.GetById(id.Value);
             if (product == null)
                 return HttpNotFound();
 
@@ -65,14 +83,14 @@ namespace SampleMVCApp.Controllers
         // POST: Product/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Prodotto prodotto)
         {
             if (ModelState.IsValid)
             {
-                _repository.Update(product);
+                _service.Update(prodotto);
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(prodotto);
         }
 
         // GET: Product/Delete/5
@@ -81,7 +99,7 @@ namespace SampleMVCApp.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var product = _repository.GetById(id.Value);
+            var product = _service.GetById(id.Value);
             if (product == null)
                 return HttpNotFound();
 
@@ -93,25 +111,8 @@ namespace SampleMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _repository.Delete(id);
+            _service.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        // Esempio: chiamata a un'API esterna
-        public ActionResult FetchExternalData()
-        {
-            // Questo esempio semplificato consente di verificare come Copilot suggerisca la gestione di chiamate HTTP.
-            using (var client = new System.Net.Http.HttpClient())
-            {
-                var response = client.GetAsync("https://jsonplaceholder.typicode.com/posts").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = response.Content.ReadAsStringAsync().Result;
-                    var posts = JsonConvert.DeserializeObject<List<ExternalPost>>(json);
-                    return View(posts);
-                }
-            }
-            return View();
         }
     }
 }

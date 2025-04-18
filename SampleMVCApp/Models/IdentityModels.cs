@@ -28,6 +28,8 @@ namespace SampleMVCApp.Models
         {
         }
 
+        public DbSet<Prodotto> Prodotti { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -39,6 +41,12 @@ namespace SampleMVCApp.Models
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(modelBuilder);
+
+            // Configura il tipo di colonna per Quantita
+            modelBuilder.Entity<Prodotto>()
+                .Property(p => p.Quantita)
+                .HasPrecision(18, 2); // Precisione totale 18, con 2 decimali
+
         }
     }
 

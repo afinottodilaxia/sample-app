@@ -91,6 +91,12 @@
     <Reference Include="MySql.Data.EntityFramework, Version=9.2.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.EntityFramework.9.2.0\lib\net48\MySql.Data.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Sprache, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Sprache.2.3.1\lib\net45\Sprache.dll</HintPath>
     </Reference>
@@ -371,13 +377,24 @@
     <Compile Include="Migrations\202504071557465_InitialCreate.Designer.cs">
       <DependentUpon>202504071557465_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202504081850304_AggiungiTabellaProdotti.cs" />
+    <Compile Include="Migrations\202504081850304_AggiungiTabellaProdotti.Designer.cs">
+      <DependentUpon>202504081850304_AggiungiTabellaProdotti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202504081945119_AggiornaTabellaProdotti.cs" />
+    <Compile Include="Migrations\202504081945119_AggiornaTabellaProdotti.Designer.cs">
+      <DependentUpon>202504081945119_AggiornaTabellaProdotti.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExternalPost.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ListaDellaSpesaViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Prodotto.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -401,6 +418,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -457,10 +475,17 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Product\FetchExternalData.cshtml" />
     <Content Include="Views\Home\Charts.cshtml" />
+    <Content Include="Views\Home\ListaDellaSpesa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202504071557465_InitialCreate.resx">
       <DependentUpon>202504071557465_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504081850304_AggiungiTabellaProdotti.resx">
+      <DependentUpon>202504081850304_AggiungiTabellaProdotti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202504081945119_AggiornaTabellaProdotti.resx">
+      <DependentUpon>202504081945119_AggiornaTabellaProdotti.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

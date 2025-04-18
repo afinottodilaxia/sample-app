@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using SampleMVCApp.Models;
 
 namespace SampleMVCApp.Controllers
 {
@@ -30,6 +32,23 @@ namespace SampleMVCApp.Controllers
         public ActionResult Charts()
         {
             return View();
+        }
+
+        public ActionResult ListaDellaSpesa(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = page ?? 1;
+
+            using (var db = new ApplicationDbContext())
+            {
+                var prodotti = db.Prodotti.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
+                var viewModel = new ListaDellaSpesaViewModel
+                {
+                    Prodotti = prodotti,
+                    NuovoProdotto = new Prodotto()
+                };
+                return View(viewModel);
+            }
         }
     }
 }
