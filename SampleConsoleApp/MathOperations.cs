@@ -10,6 +10,8 @@ namespace SampleConsoleApp
     {
         public int ComputeFactorial(int n)
         {
+            if (n < 0)
+                throw new ArgumentException("Input must be a non-negative integer.", nameof(n));
             if (n == 0 || n == 1)
                 return 1;
             else

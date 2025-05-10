@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\SampleConsoleApp.Tests\MathOperationsTests.cs" Link="MathOperationsTests.cs" />
-  </ItemGroup>
-
 </Project>
