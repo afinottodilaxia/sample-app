@@ -27,12 +27,20 @@ namespace SampleConsoleApp
 
         public static int Divide(int a, int b)
         {
+            if (b == 0)
+            {
+                throw new ArgumentException("Division by zero is not allowed.", nameof(b));
+            }
             int result = a / b;
             return result;
         }
 
         public static int Modulus(int a, int b)
         {
+            if (b == 0)
+            {
+                throw new ArgumentException("Modulus by zero is not allowed.", nameof(b));
+            }
             int result = a % b;
             return result;
         }
