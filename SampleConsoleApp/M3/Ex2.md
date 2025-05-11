@@ -17,4 +17,4 @@ Mettere in pratica la combinazione di “few-shot prompting” e “chain of tho
 3. **Analizza il risultato**:
     - La funzione generata rispetta i passaggi suggeriti?
     - L’esempio fornito è stato utile per guidare Copilot?
-4. **Extra:** Proponi possibili miglioramenti al prompt o al codice generato (ad esempio: gestione di numeri negativi, input null, eccezioni, ottimizzazioni).
+4. **Esercitazione:** Proponi possibili miglioramenti al prompt o al codice generato (ad esempio: gestione di numeri negativi, input null, eccezioni, ottimizzazioni).

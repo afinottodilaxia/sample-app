@@ -12,4 +12,4 @@ Sperimentare la tecnica del prompt “zero-shot” con Copilot per generare codi
 3. **Analizza il risultato**:
     - Il codice prodotto ti sembra funzionare correttamente?
     - È generico o contiene già qualche controllo/ottimizzazione?
-4. **Extra:** Come potresti arricchire il prompt per ottenere una soluzione più robusta (ad esempio controlli sugli input, log, documentazione)?
+4. **Esercitazione:** Come potresti arricchire il prompt per ottenere una soluzione più robusta (ad esempio controlli sugli input, log, documentazione)?
