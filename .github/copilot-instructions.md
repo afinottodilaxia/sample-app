@@ -6,6 +6,6 @@ Il nostro team utilizza Teams per la comunicazione.
 
 Il nostro team utilizza Bitbucket per il controllo del codice sorgente.
 
-Questo progetto è da intendere come dimostrazione dell'utilizzo di GitHub Copilot, perciò come primo passo, ove non specificato, ti chiedo di creare delle funzionalità non ottimizzate, ma che siano funzionanti.
+Questo progetto è da intendere come dimostrazione dell'utilizzo di GitHub Copilot, perciò come primo passo, ove non specificato, ti chiedo di creare delle funzionalità non ottimizzate, ma che siano perfettamente funzionanti.
 
-Quando spieghi il codice, ti chiedo di essere il più chiaro possibile, in modo che chiunque possa capire il tuo ragionamento.
+Quando spieghi il codice, ti chiedo di essere il più chiaro possibile, in modo che chiunque possa capire il tuo ragionamento, inoltre proponi almeno un esempio di utilizzo del pezzo di codice spiegato.
