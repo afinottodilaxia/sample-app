@@ -15,7 +15,7 @@ In questo esercizio metterai in pratica la funzionalità “Copilot Chat/Edits�
 1. **Apri il progetto in Visual Studio** e verifica che nel file "Orders.cs" siano presenti le classi già fornite (OrderDetail, Order e OrdersProcessor).  
 2. **Seleziona il metodo** che calcola il totale mensile degli ordini all’interno della classe "OrdersProcessor".  
 3. **Avvia Copilot Edits**:
-   - Tramite l’icona Copilot Edits (o il comando rapido associato), digita un commento in linguaggio naturale, ad esempio:  
+   - Tramite l’icona Copilot Edits (o il comando rapido associato), digita un commento in linguaggio naturale, dopo aver selezionato per intero il metodo "CalculateTotalMonthlyRevenue", ad esempio:  
      > "Ottimizza questo metodo per migliorare la leggibilità e la performance, utilizzando LINQ e aggiungendo controlli sugli input."  
    - Applica la modifica proposta da Copilot (o valuta eventuali alternative suggerite).
 4. **Verifica le modifiche** apportate:
