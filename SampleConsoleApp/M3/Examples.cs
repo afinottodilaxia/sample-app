@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SampleConsoleApp
+namespace SampleConsoleApp.M3
 {
-    public class Module3Examples
+    public class Examples
     {
     }
 }
