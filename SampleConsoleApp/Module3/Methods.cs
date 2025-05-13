@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SampleConsoleApp.M4
+namespace SampleConsoleApp.Module3
 {
     public class Methods
     {
