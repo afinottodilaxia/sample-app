@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
-namespace SampleConsoleApp.M3
+namespace SampleConsoleApp.Module2
 {
-    internal class Ex1
+    public class Examples
     {
     }
 }
